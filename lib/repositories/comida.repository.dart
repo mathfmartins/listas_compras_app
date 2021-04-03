@@ -1,27 +1,27 @@
-import 'package:lista_compras_app/models/comida.dart';
+import 'package:lista_compras_app/models/categorias.dart';
 
 class ComidaRepository {
     // ignore: deprecated_member_use
-    static List<Comida> comidas = List<Comida>();
+    static List<Comida> produtos = List<Comida>();
 
-    create(Comida comida) {
-      comidas.add(comida);
+    create(Comida produto) {
+      produtos.add(produto);
     }
 
     List<Comida> read() {
-       comidas.sort((comida1, comida2) {
-        if(comida1.finalizado && !comida2.finalizado) return 1;
-        else if (!comida1.finalizado && comida2.finalizado) return -1;
+       produtos.sort((produto1, produto2) {
+        if(produto1.finalizado && !produto2.finalizado) return 1;
+        else if (!produto1.finalizado && produto2.finalizado) return -1;
 
         return 0;
       });
 
-      return comidas;
+      return produtos;
     }
     
     delete(String nome) {
-      var comida = comidas.singleWhere((element) => element.nome == nome);
-      comidas.remove(comida);
+      var produto = produtos.singleWhere((element) => element.nome == nome);
+      produtos.remove(produto);
     } 
 
   

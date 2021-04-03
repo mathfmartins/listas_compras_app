@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:lista_compras_app/models/produto.dart';
 import 'package:lista_compras_app/repositories/categoria.repository.dart';
 import 'package:lista_compras_app/repositories/comida.repository.dart';
+import 'package:lista_compras_app/repositories/higiene.repository.dart';
 
 class ListaComprasPage extends StatefulWidget {
   @override
   _ListaComprasPageState createState() => _ListaComprasPageState();
 }
 
-// bool canEdit = false;
-
 class _ListaComprasPageState extends State<ListaComprasPage> {
   
   final repository = CategoriasRepository();
   final comidaRepository = ComidaRepository();
+  final higienePessoalRepository = HigienePessoalRepository();
 
-  var _categoriaCtrl = TextEditingController();
   // ignore: deprecated_member_use
   List<Categoria> _categorias;
-  Categoria _categoria;
   
   @override
   initState() {
@@ -59,6 +57,8 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
                   onPressed: () {
                     if(_categorias[index].nome == 'Comidas')
                        Navigator.of(context).pushNamed('/comidas', arguments: this.comidaRepository.read());
+                    else if (_categorias[index].nome == 'Higiene Pessoal')
+                       Navigator.of(context).pushNamed('/higienePessoal', arguments: this.higienePessoalRepository.read());
                   },
                 ),
            ),

@@ -7,5 +7,4 @@ class Categoria {
 
   Categoria({this.nome, this.icone});
 
-
 }

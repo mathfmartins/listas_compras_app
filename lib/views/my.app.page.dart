@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lista_compras_app/views/comidas.page.dart';
+import 'package:lista_compras_app/views/higiene.pessoal.page.dart';
 
 import 'lista.compras.page.dart';
 
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => ListaComprasPage(),
-        '/comidas': (context) => ComidasPage()
+        '/comidas': (context) => ComidasPage(),
+        '/higienePessoal': (context) => HigienePessoalPage(),
       },
     );
       
