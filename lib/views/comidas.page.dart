@@ -102,10 +102,9 @@ class _ComidaPageState extends State<ComidasPage> {
               onPressed: () {
                 setState(() {
                   if (this.comidas[index].quantidade == 1) {
-                    return null;
+                    this.repository.delete(this.comidas[index].nome);
                   }
                   else this.comidas[index].quantidade--;
-
                 });
               },
           ),
