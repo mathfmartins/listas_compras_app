@@ -92,7 +92,21 @@ class _ComidaPageState extends State<ComidasPage> {
     direction: DismissDirection.startToEnd,
     child: CheckboxListTile(
        value: this.comidas[index].finalizado, 
-       title: Text(this.comidas[index].nome),
+       title: Row(
+         children: [
+          Expanded(child: Text('${this.comidas[index].nome}')),
+          Expanded(child: Text('1')),
+          IconButton(
+          icon: const Icon(Icons.add),
+          tooltip: 'Quantidade',
+          onPressed: () {
+            setState(() {
+              // _volume += 10;
+            });
+          },
+        ),
+         ],
+       ),
        secondary: CircleAvatar(child: Icon(this.comidas[index].finalizado ? Icons.check : Icons.error)),
        onChanged: (bool value) { 
          setState(() {
@@ -102,6 +116,6 @@ class _ComidaPageState extends State<ComidasPage> {
        },
    ),
   );
-  }
+}
   
 }
