@@ -1,7 +1,7 @@
 class Comida {
   String nome;
   bool finalizado;
-
-  Comida({this.nome, this.finalizado});
+  int quantidade;
+  Comida({this.nome, this.finalizado, this.quantidade: 1});
   
 }

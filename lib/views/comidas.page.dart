@@ -53,7 +53,7 @@ class _ComidaPageState extends State<ComidasPage> {
                  child: Text('ADD'),
                  onPressed: () {
                    setState(() {
-                      this.repository.create(Comida(nome: _comidaCtrl.text, finalizado: false));
+                      this.repository.create(Comida(nome: _comidaCtrl.text, finalizado: false, quantidade: 1));
                       this.comidas = repository.read();
                    });
                  }
@@ -94,17 +94,30 @@ class _ComidaPageState extends State<ComidasPage> {
        value: this.comidas[index].finalizado, 
        title: Row(
          children: [
-          Expanded(child: Text('${this.comidas[index].nome}')),
-          Expanded(child: Text('1')),
+          Expanded(child: Text(this.comidas[index].nome)),
+          Expanded(child: Text(this.comidas[index].quantidade.toString())),
           IconButton(
-          icon: const Icon(Icons.add),
-          tooltip: 'Quantidade',
-          onPressed: () {
-            setState(() {
-              // _volume += 10;
-            });
-          },
-        ),
+              icon: const Icon(Icons.remove_circle_outline),
+              tooltip: 'Quantidade',
+              onPressed: () {
+                setState(() {
+                  if (this.comidas[index].quantidade == 1) {
+                    return null;
+                  }
+                  else this.comidas[index].quantidade--;
+
+                });
+              },
+          ),
+          IconButton(
+              icon: const Icon(Icons.add),
+              tooltip: 'Quantidade',
+              onPressed: () {
+                setState(() {
+                  this.comidas[index].quantidade++;
+                });
+              },
+          ),
          ],
        ),
        secondary: CircleAvatar(child: Icon(this.comidas[index].finalizado ? Icons.check : Icons.error)),
