@@ -27,7 +27,6 @@ class _HigienePessoalPageState extends State<HigienePessoalPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Higiene Pessoal'),
-        backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
       body: Column(
@@ -41,20 +40,22 @@ class _HigienePessoalPageState extends State<HigienePessoalPage> {
                     TextField(
                       decoration: InputDecoration(
                       labelText: 'Descrição',
-                      labelStyle: TextStyle(color: Colors.blueAccent),
+                      fillColor: Colors.purple,
+                      labelStyle: TextStyle(color: Colors.purple),
                     ),
                     controller: _produtoCtrl,
                   ),
                 ),
                // ignore: deprecated_member_use
                RaisedButton(
-                 color: Colors.blueAccent,
+                 color: Colors.purple,
                  textColor: Colors.white,
                  child: Text('ADD'),
                  onPressed: () {
                    setState(() {
                       this.repository.create(HigienePessoal(nome: _produtoCtrl.text, finalizado: false, quantidade: 1));
                       this.produtos = repository.read();
+                      _produtoCtrl.text = ''; 
                    });
                  }
                ),
@@ -97,7 +98,7 @@ class _HigienePessoalPageState extends State<HigienePessoalPage> {
           Expanded(child: Text(this.produtos[index].nome)),
           Expanded(child: Text(this.produtos[index].quantidade.toString())),
           IconButton(
-              icon: const Icon(Icons.remove_circle_outline),
+              icon: const Icon(Icons.remove_circle_outline, color: Colors.red,),
               tooltip: 'Quantidade',
               onPressed: () {
                 setState(() {
@@ -109,7 +110,7 @@ class _HigienePessoalPageState extends State<HigienePessoalPage> {
               },
           ),
           IconButton(
-              icon: const Icon(Icons.add),
+              icon: const Icon(Icons.add, color: Colors.green,),
               tooltip: 'Quantidade',
               onPressed: () {
                 setState(() {

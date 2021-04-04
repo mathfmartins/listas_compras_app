@@ -51,6 +51,7 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
     return ListTile(
            title: Text(_categorias[index].nome.toString()),
            leading: CircleAvatar(
+             backgroundColor: Colors.purple,
              // ignore: deprecated_member_use
              child: FlatButton(
                     child: Icon(_categorias[index].icone,

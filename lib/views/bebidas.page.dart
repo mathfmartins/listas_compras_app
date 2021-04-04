@@ -27,7 +27,6 @@ class _BebidasPageState extends State<BebidasPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bebidas'),
-        backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
       body: Column(
@@ -41,20 +40,21 @@ class _BebidasPageState extends State<BebidasPage> {
                     TextField(
                       decoration: InputDecoration(
                       labelText: 'Descrição',
-                      labelStyle: TextStyle(color: Colors.blueAccent),
+                      labelStyle: TextStyle(color: Colors.purple),
                     ),
                     controller: _bebidaCtrl,
                   ),
                 ),
                // ignore: deprecated_member_use
                RaisedButton(
-                 color: Colors.blueAccent,
+                 color: Colors.purple,
                  textColor: Colors.white,
                  child: Text('ADD'),
                  onPressed: () {
                    setState(() {
                       this.repository.create(Bebida(nome: _bebidaCtrl.text, finalizado: false, quantidade: 1));
                       this.bebidas = repository.read();
+                      _bebidaCtrl.text = '';
                    });
                  }
                ),
@@ -97,19 +97,19 @@ class _BebidasPageState extends State<BebidasPage> {
           Expanded(child: Text(this.bebidas[index].nome)),
           Expanded(child: Text(this.bebidas[index].quantidade.toString())),
           IconButton(
-              icon: const Icon(Icons.remove_circle_outline),
+              icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
               tooltip: 'Quantidade',
               onPressed: () {
                 setState(() {
                   if (this.bebidas[index].quantidade == 1) {
-                    this.repository.delete(this.bebidas[index].nome);
+                     this.repository.delete(this.bebidas[index].nome);
                   }
                   else this.bebidas[index].quantidade--;
                 });
               },
           ),
           IconButton(
-              icon: const Icon(Icons.add),
+              icon: const Icon(Icons.add, color: Colors.green),
               tooltip: 'Quantidade',
               onPressed: () {
                 setState(() {

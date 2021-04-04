@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        primaryColor: Colors.purple,
+        // ignore: deprecated_member_use
+        
         // brightness: Brightness.dark,
         // primaryColorBrightness: Brightness.light
       ),
