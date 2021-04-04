@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lista_compras_app/models/produto.dart';
+import 'package:lista_compras_app/repositories/bebida.repository.dart';
 import 'package:lista_compras_app/repositories/categoria.repository.dart';
 import 'package:lista_compras_app/repositories/comida.repository.dart';
 import 'package:lista_compras_app/repositories/higiene.repository.dart';
@@ -13,6 +14,7 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
   
   final repository = CategoriasRepository();
   final comidaRepository = ComidaRepository();
+  final bebidaRepository = BebidaRepository();
   final higienePessoalRepository = HigienePessoalRepository();
 
   // ignore: deprecated_member_use
@@ -57,6 +59,8 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
                   onPressed: () {
                     if(_categorias[index].nome == 'Comidas')
                        Navigator.of(context).pushNamed('/comidas', arguments: this.comidaRepository.read());
+                    if(_categorias[index].nome == 'Bebidas')
+                       Navigator.of(context).pushNamed('/bebidas', arguments: this.comidaRepository.read());
                     else if (_categorias[index].nome == 'Higiene Pessoal')
                        Navigator.of(context).pushNamed('/higienePessoal', arguments: this.higienePessoalRepository.read());
                   },

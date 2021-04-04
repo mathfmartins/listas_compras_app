@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:lista_compras_app/models/categorias.dart';
-import 'package:lista_compras_app/repositories/comida.repository.dart';
+import 'package:lista_compras_app/repositories/bebida.repository.dart';
 
-class ComidasPage extends StatefulWidget {
+class BebidasPage extends StatefulWidget {
   @override
-  _ComidaPageState createState() => _ComidaPageState();
+  _BebidasPageState createState() => _BebidasPageState();
 }
 
-class _ComidaPageState extends State<ComidasPage> {
+class _BebidasPageState extends State<BebidasPage> {
 
-  var _comidaCtrl = TextEditingController(); 
-  var repository = ComidaRepository();
+  var _bebidaCtrl = TextEditingController(); 
+  var repository = BebidaRepository();
   // ignore: deprecated_member_use
-  var comidas = List<Comida>();
+  var bebidas = List<Bebida>();
   // ignore: deprecated_member_use
 
   @override
   initState() {
-    this.comidas = repository.read();
+    this.bebidas = repository.read();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-  // List<Comida> comidas = ModalRoute.of(context).settings.arguments;
+  // List<Comida> bebidas = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comidas'),
-        // backgroundColor: Colors.blueAccent,
+        title: Text('Bebidas'),
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
       body: Column(
@@ -43,7 +43,7 @@ class _ComidaPageState extends State<ComidasPage> {
                       labelText: 'Descrição',
                       labelStyle: TextStyle(color: Colors.blueAccent),
                     ),
-                    controller: _comidaCtrl,
+                    controller: _bebidaCtrl,
                   ),
                 ),
                // ignore: deprecated_member_use
@@ -53,8 +53,8 @@ class _ComidaPageState extends State<ComidasPage> {
                  child: Text('ADD'),
                  onPressed: () {
                    setState(() {
-                      this.repository.create(Comida(nome: _comidaCtrl.text, finalizado: false, quantidade: 1));
-                      this.comidas = repository.read();
+                      this.repository.create(Bebida(nome: _bebidaCtrl.text, finalizado: false, quantidade: 1));
+                      this.bebidas = repository.read();
                    });
                  }
                ),
@@ -64,7 +64,7 @@ class _ComidaPageState extends State<ComidasPage> {
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.only(top: 18.0),
-              itemCount: this.comidas.length,
+              itemCount: this.bebidas.length,
               itemBuilder: buildItem,
             ),
            ),
@@ -75,7 +75,7 @@ class _ComidaPageState extends State<ComidasPage> {
 
   Widget buildItem(context, index) {
   return Dismissible(
-    key: Key(this.comidas[index].nome),
+    key: Key(this.bebidas[index].nome),
     background: Container(
       color: Colors.red,
       child: Align(
@@ -84,27 +84,27 @@ class _ComidaPageState extends State<ComidasPage> {
       ),
     ),
     onDismissed: (_) { 
-      this.repository.delete(this.comidas[index].nome);
+      this.repository.delete(this.bebidas[index].nome);
       setState(() {
-        this.comidas = repository.read();       
+        this.bebidas = repository.read();       
       });
     },
     direction: DismissDirection.startToEnd,
     child: CheckboxListTile(
-       value: this.comidas[index].finalizado, 
+       value: this.bebidas[index].finalizado, 
        title: Row(
          children: [
-          Expanded(child: Text(this.comidas[index].nome)),
-          Expanded(child: Text(this.comidas[index].quantidade.toString())),
+          Expanded(child: Text(this.bebidas[index].nome)),
+          Expanded(child: Text(this.bebidas[index].quantidade.toString())),
           IconButton(
               icon: const Icon(Icons.remove_circle_outline),
               tooltip: 'Quantidade',
               onPressed: () {
                 setState(() {
-                  if (this.comidas[index].quantidade == 1) {
-                    this.repository.delete(this.comidas[index].nome);
+                  if (this.bebidas[index].quantidade == 1) {
+                    this.repository.delete(this.bebidas[index].nome);
                   }
-                  else this.comidas[index].quantidade--;
+                  else this.bebidas[index].quantidade--;
                 });
               },
           ),
@@ -113,17 +113,17 @@ class _ComidaPageState extends State<ComidasPage> {
               tooltip: 'Quantidade',
               onPressed: () {
                 setState(() {
-                  this.comidas[index].quantidade++;
+                  this.bebidas[index].quantidade++;
                 });
               },
           ),
          ],
        ),
-       secondary: CircleAvatar(child: Icon(this.comidas[index].finalizado ? Icons.check : Icons.error)),
+       secondary: CircleAvatar(child: Icon(this.bebidas[index].finalizado ? Icons.check : Icons.error)),
        onChanged: (bool value) { 
          setState(() {
-            this.comidas[index].finalizado = value;  
-            this.comidas = repository.read();       
+            this.bebidas[index].finalizado = value;  
+            this.bebidas = repository.read();       
          });
        },
    ),
