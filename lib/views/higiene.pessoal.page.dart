@@ -92,11 +92,12 @@ class _HigienePessoalPageState extends State<HigienePessoalPage> {
     },
     direction: DismissDirection.startToEnd,
     child: CheckboxListTile(
+       secondary: CircleAvatar(child: Icon(this.produtos[index].finalizado ? Icons.check : Icons.error)),
        value: this.produtos[index].finalizado, 
        title: Row(
          children: [
-          Expanded(child: Text(this.produtos[index].nome)),
-          Expanded(child: Text(this.produtos[index].quantidade.toString())),
+          Expanded(child: Text(this.produtos[index].nome, style: TextStyle(fontWeight: FontWeight.w600))),
+          Expanded(child: Text(this.produtos[index].quantidade.toString(), style: TextStyle(fontWeight: FontWeight.w600))),
           IconButton(
               icon: const Icon(Icons.remove_circle_outline, color: Colors.red,),
               tooltip: 'Quantidade',
@@ -120,7 +121,6 @@ class _HigienePessoalPageState extends State<HigienePessoalPage> {
           ),
          ],
        ),
-       secondary: CircleAvatar(child: Icon(this.produtos[index].finalizado ? Icons.check : Icons.error)),
        onChanged: (bool value) { 
          setState(() {
             this.produtos[index].finalizado = value;  

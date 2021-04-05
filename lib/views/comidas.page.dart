@@ -91,11 +91,12 @@ class _ComidaPageState extends State<ComidasPage> {
     },
     direction: DismissDirection.startToEnd,
     child: CheckboxListTile(
+       secondary: CircleAvatar(child: Icon(this.comidas[index].finalizado ? Icons.check : Icons.error)),
        value: this.comidas[index].finalizado, 
        title: Row(
          children: [
-          Expanded(child: Text(this.comidas[index].nome)),
-          Expanded(child: Text(this.comidas[index].quantidade.toString())),
+          Expanded(child: Text(this.comidas[index].nome, style: TextStyle(fontWeight: FontWeight.w600)),),
+          Expanded(child: Text(this.comidas[index].quantidade.toString(), style: TextStyle(fontWeight: FontWeight.w600),)),
           IconButton(
               icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
               tooltip: 'Quantidade',
@@ -119,7 +120,6 @@ class _ComidaPageState extends State<ComidasPage> {
           ),
          ],
        ),
-       secondary: CircleAvatar(child: Icon(this.comidas[index].finalizado ? Icons.check : Icons.error)),
        onChanged: (bool value) { 
          setState(() {
             this.comidas[index].finalizado = value;  

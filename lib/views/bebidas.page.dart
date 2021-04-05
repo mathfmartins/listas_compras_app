@@ -91,11 +91,12 @@ class _BebidasPageState extends State<BebidasPage> {
     },
     direction: DismissDirection.startToEnd,
     child: CheckboxListTile(
+       secondary: CircleAvatar(child: Icon(this.bebidas[index].finalizado ? Icons.check : Icons.error)),
        value: this.bebidas[index].finalizado, 
        title: Row(
          children: [
-          Expanded(child: Text(this.bebidas[index].nome)),
-          Expanded(child: Text(this.bebidas[index].quantidade.toString())),
+          Expanded(child: Text(this.bebidas[index].nome, style: TextStyle(fontWeight: FontWeight.w600),)),
+          Expanded(child: Text(this.bebidas[index].quantidade.toString(), style: TextStyle(fontWeight: FontWeight.w600))),
           IconButton(
               icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
               tooltip: 'Quantidade',
@@ -119,7 +120,6 @@ class _BebidasPageState extends State<BebidasPage> {
           ),
          ],
        ),
-       secondary: CircleAvatar(child: Icon(this.bebidas[index].finalizado ? Icons.check : Icons.error)),
        onChanged: (bool value) { 
          setState(() {
             this.bebidas[index].finalizado = value;  
